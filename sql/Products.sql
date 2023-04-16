@@ -1,0 +1,4 @@
+CREATE OR REPLACE PROCEDURE create_product(prd IN OUT PRODUCT%rowtype) IS
+BEGIN
+
+END;
