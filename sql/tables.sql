@@ -3,6 +3,7 @@ CREATE TABLE Cart
     cart_id INT PRIMARY KEY
 );
 
+-- CRUD OPs done for Customer Table
 CREATE TABLE Customer
 (
     customer_id  INT PRIMARY KEY,
@@ -15,6 +16,7 @@ CREATE TABLE Customer
     FOREIGN KEY (cart_id) REFERENCES Cart (cart_id) ON DELETE SET NULL
 );
 
+--
 CREATE TABLE Seller
 (
     seller_id INT PRIMARY KEY,
@@ -30,9 +32,11 @@ CREATE TABLE SellerPhoneNumber
     FOREIGN KEY (seller_id) REFERENCES Seller (seller_id) ON DELETE CASCADE
 );
 
+-- CRUD OPs done for Product Table
 CREATE TABLE Product
 (
     product_id INT PRIMARY KEY,
+    prd_name   VARCHAR(100),
     prd_type   VARCHAR(10),
     color      VARCHAR(10),
     agegroup   VARCHAR(20),
