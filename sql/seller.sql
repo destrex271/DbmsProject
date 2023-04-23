@@ -2,6 +2,7 @@ CREATE OR REPLACE PROCEDURE create_seller(
     pass VARCHAR,
     name VARCHAR,
     address VARCHAR,
+    ph_num VARCHAR,
     sllr OUT SELLER%rowtype
 ) AS
     cint INT NOT NULL DEFAULT 0;
@@ -19,6 +20,7 @@ BEGIN
     sllr.NAME := name;
     sllr.S_PASS := pass;
     INSERT INTO SELLER VALUES(sllr.SELLER_ID, sllr.S_PASS, sllr.NAME, sllr.ADDRESS);
+    INSERT INTO SELLERPHONENUMBER VALUES(ph_num ,sllr.SELLER_ID);
 END;
 
 CREATE OR REPLACE PROCEDURE delete_seller(sid INT) AS
@@ -31,6 +33,7 @@ CREATE OR REPLACE PROCEDURE update_seller(
     pass VARCHAR,
     name VARCHAR,
     address VARCHAR,
+    ph_number VARCHAR,
     sllr OUT SELLER%rowtype
 ) AS
 BEGIN
@@ -41,18 +44,23 @@ BEGIN
     UPDATE SELLER SET S_PASS = pass WHERE SELLER_ID = id;
     UPDATE SELLER SET ADDRESS = sllr.ADDRESS WHERE SELLER_ID = id;
     UPDATE SELLER SET NAME = sllr.NAME WHERE SELLER_ID = id;
-    INSERT INTO SELLER VALUES(sllr.SELLER_ID, sllr.S_PASS, sllr.NAME, sllr.ADDRESS);
+    UPDATE SELLERPHONENUMBER SET PHONE_NUMBER = ph_number WHERE SELLER_ID = id;
 END;
 
 CREATE OR REPLACE PROCEDURE update_seller_by_id(
     id INT,
-    sllr OUT SELLER%rowtype
+    sllr OUT SELLER%rowtype,
+    sllr_ph OUT SELLERPHONENUMBER%rowtype
 ) AS
     CURSOR get_seller IS SELECT * FROM SELLER WHERE SELLER_ID = id;
+    CURSOR get_seller_ph IS SELECT * FROM SELLERPHONENUMBER WHERE SELLER_ID = id;
 BEGIN
     OPEN get_seller;
     FETCH get_seller INTO sllr;
     CLOSE get_seller;
+    OPEN get_seller_ph;
+    FETCH get_seller_ph INTO sllr_ph;
+    CLOSE get_seller_ph;
 END;
 
 CREATE OR REPLACE PROCEDURE get_total_sellers(ct OUT NUMBER) AS

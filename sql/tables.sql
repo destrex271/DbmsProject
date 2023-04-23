@@ -28,7 +28,7 @@ CREATE TABLE Seller
 CREATE TABLE SellerPhoneNumber
 (
     phone_number VARCHAR(10),
-    seller_id    INT,
+    seller_id    INT PRIMARY KEY,
     FOREIGN KEY (seller_id) REFERENCES Seller (seller_id) ON DELETE CASCADE
 );
 
@@ -57,7 +57,8 @@ CREATE TABLE Cart_item
     date_added      DATE,
     purchased       NUMBER(1, 0),
     FOREIGN KEY (cart_id) REFERENCES Cart (cart_id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES Product (product_id) ON DELETE CASCADE
+    FOREIGN KEY (product_id) REFERENCES Product (product_id) ON DELETE CASCADE,
+    PRIMARY KEY (cart_id, product_id)
 );
 
 CREATE TABLE Payment
