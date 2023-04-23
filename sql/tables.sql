@@ -9,8 +9,8 @@ CREATE TABLE Customer
     customer_id  INT PRIMARY KEY,
     c_pass       VARCHAR(20),
     name         VARCHAR(20),
-    address      VARCHAR(20),
-    phone_number VARCHAR(20),
+    address      VARCHAR(100),
+    phone_number VARCHAR(10) UNIQUE,
     pincode      INT,
     cart_id      INT,
     FOREIGN KEY (cart_id) REFERENCES Cart (cart_id) ON DELETE SET NULL
@@ -27,9 +27,10 @@ CREATE TABLE Seller
 
 CREATE TABLE SellerPhoneNumber
 (
-    phone_number VARCHAR(10),
+    phone_number VARCHAR(10) UNIQUE,
     seller_id    INT PRIMARY KEY,
-    FOREIGN KEY (seller_id) REFERENCES Seller (seller_id) ON DELETE CASCADE
+    FOREIGN KEY (seller_id) REFERENCES Seller (seller_id) ON DELETE CASCADE,
+    CHECK(length(phone_number) = 10)
 );
 
 -- CRUD OPs done for Product Table
@@ -37,9 +38,9 @@ CREATE TABLE Product
 (
     product_id INT PRIMARY KEY,
     prd_name   VARCHAR(100),
-    prd_type   VARCHAR(10),
+    prd_type   VARCHAR(100),
     color      VARCHAR(10),
-    agegroup   VARCHAR(20),
+    agegroup   VARCHAR(100),
     prd_size   VARCHAR(25),
     gender     VARCHAR(25),
     commission FLOAT,

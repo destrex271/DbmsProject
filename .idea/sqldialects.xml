@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/sql/Operations.sql" dialect="OracleSqlPlus" />
     <file url="file://$PROJECT_DIR$/sql/config.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/sql/customers.sql" dialect="OracleSqlPlus" />
     <file url="file://$PROJECT_DIR$/sql/drop_all.sql" dialect="OracleSqlPlus" />
@@ -8,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/sql/seller.sql" dialect="OracleSqlPlus" />
     <file url="file://$PROJECT_DIR$/sql/shopping.sql" dialect="OracleSqlPlus" />
     <file url="file://$PROJECT_DIR$/sql/tables.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/sql/testing.sql" dialect="OracleSqlPlus" />
   </component>
 </project>
